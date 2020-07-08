@@ -1,0 +1,27 @@
+<%- include('head'); %>
+
+<h1>Movies!</h1>
+
+<%= user.username %>
+
+<br>
+
+<form action="/movies" method="POST">
+    <input name="search" type="search" placeholder="Search for a movie!">
+    <button>Search</button>
+</form>
+
+<div class="results">
+    <ul>
+        <% movies.forEach(movie => { %>
+            <li id="<%= movie.id %>"><%= movie.original_title %></li>
+        <% }); %>
+    </ul>
+</div>
+
+<form action="/movies/add" method="POST">
+    <input name="id" type="hidden" value="1">
+    <button>Add Movie</button>
+</form>
+
+<%- include ('jquery'); %>

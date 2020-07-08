@@ -1,0 +1,15 @@
+<script>
+    $(document).ready(function() {
+        
+        $('li').on('click', function() {
+            console.log($(this).text());
+            $('.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            $('input[type="hidden"]').val($('.selected').attr('id'));
+
+        });
+
+    });
+
+</script>
