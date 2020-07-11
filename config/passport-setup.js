@@ -1,6 +1,9 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const keys = require('./keys');
+const keys;
+if(process.env.CALLBACK_URL) {
+    keys = require('./keys');
+}
 const User = require('../models/user');
 const mongoose = require('mongoose');
 
