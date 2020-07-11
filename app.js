@@ -4,8 +4,8 @@ const profileRoutes = require('./routes/profileRoutes');
 const path = require('path');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
-const keys;
-if(process.env.CALLBACK_URL) {
+let keys = {};
+if(!process.env.CALLBACK_URL) {
     keys = require('./config/keys');
 }
 const cookieSession = require('cookie-session');
