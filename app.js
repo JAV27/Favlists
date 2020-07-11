@@ -11,6 +11,7 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const User = require('./models/user');
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 const authCheck = (req, res, next) => {
     if(!req.user) {
@@ -25,7 +26,7 @@ app.set('view engine', 'ejs');
 
 app.use(cookieSession({
     maxAge: 24*60*60*1000,
-    keys: [keys.session.cookieKey]
+    keys: [process.env.COOKIE_KEY || keys.session.cookieKey]
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //connect to mongo
-mongoose.connect(keys.mongodb.dbURI, () => {
+mongoose.connect(process.env.DB_URI || keys.mongodb.dbURI, () => {
     console.log('test!');
 });
 
@@ -109,6 +110,6 @@ app.post('/movies/add', (req, res) => {
 
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Server running at port 3000");
 });
