@@ -24,7 +24,7 @@ passport.use(
         clientSecret: process.env.CLIENT_SECRET || keys.google.clientSecret,
         proxy: true
     }, (accessToken, refreshToken, profile, done) => {
-
+        console.log("HERE");
         User.findOne({googleID: profile.id}).then((currentUser) => {
             if(currentUser) {
                 console.log("User is: " + currentUser);

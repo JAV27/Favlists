@@ -38,8 +38,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //connect to mongo
-mongoose.connect(process.env.DB_URI || keys.mongodb.dbURI, () => {
-    console.log('test!');
+mongoose.connect(process.env.DB_URI || keys.mongodb.dbURI, {useNewUrlParser: true}).catch((err) => {
+    console.log(err);
 });
 
 app.use('/auth', authRoutes);
