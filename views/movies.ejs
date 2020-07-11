@@ -1,6 +1,18 @@
 <%- include('head'); %>
 
 <h1>Movies!</h1>
+<h3>My Movies</h3>
+<a href="/">Back Home</a>
+<div class="movies">
+    <ul>
+        <% userMovies.forEach(movie => { %>
+            <li>
+                <img src="http://image.tmdb.org/t/p/w92/<%= movie.poster %>">
+                <p><%= movie.title %></p>
+            </li>
+        <% }); %>
+    </ul>
+</div>
 
 <%= user.username %>
 

@@ -3,7 +3,13 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     username: String,
-    googleID: String
+    googleID: String,
+    movies: [
+        {
+            type: Number,
+            default: 0
+        }
+    ]
 });
 
 const User = mongoose.model('user', userSchema);
