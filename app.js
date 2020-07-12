@@ -77,7 +77,8 @@ app.get('/movies', authCheck, (req, res) => {
         res.render('movies', {
             user: req.user,
             movies: [],
-            userMovies: []
+            userMovies: [],
+            error: "One of your movies could not be found"
         });
     });
 
@@ -85,7 +86,7 @@ app.get('/movies', authCheck, (req, res) => {
 
 //Search request
 app.post('/movies', (req, res) => {
-    
+
     let search = encodeURI(req.body.search);
     axios.get('https://api.themoviedb.org/3/search/movie?api_key=ed07fde2a29e865fa73860b991476f93&query=' + search + '&page=1').then((data) => {
         res.render('movies', {
@@ -94,12 +95,21 @@ app.post('/movies', (req, res) => {
             userMovies: []
         });
     });
+
 });
 
 
 //Add movie button is clicked
 app.post('/movies/add', (req, res) => {
+
     let id = req.body.id;
+
+    if(id == 1) {
+        return res.render('/movies', {
+            error: "Must select a movie"
+        });
+    }
+
     let update = {
         $push: {
             movies: id
