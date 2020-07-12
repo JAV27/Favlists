@@ -72,6 +72,13 @@ app.get('/movies', authCheck, (req, res) => {
             movies: [],
             userMovies: newArr
         });
+    }).catch((err) => {
+        console.log(err);
+        res.render('movies', {
+            user: req.user,
+            movies: [],
+            userMovies: []
+        });
     });
 
 });
