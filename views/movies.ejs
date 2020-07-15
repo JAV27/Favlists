@@ -11,6 +11,10 @@
             <li>
                 <img src="http://image.tmdb.org/t/p/w92/<%= movie.poster %>">
                 <p><%= movie.title %></p>
+                <form action="/movies/delete" method="POST">
+                    <input type="hidden"  name="id" value="<%= movie.id %>">
+                    <button>Delete</button>
+                </form>
             </li>
         <% }); %>
     </ul>

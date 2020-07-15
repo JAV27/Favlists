@@ -6,8 +6,7 @@ const userSchema = new Schema({
     googleID: String,
     movies: [
         {
-            type: Number,
-            default: 0
+            movieId: Number
         }
     ]
 });

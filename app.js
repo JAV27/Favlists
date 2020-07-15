@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 app.get('/movies', authCheck, (req, res) => {
 
     let userMovies = req.user.movies.map((e) => {
-        return 'https://api.themoviedb.org/3/movie/' + e + '?api_key=ed07fde2a29e865fa73860b991476f93'
+        return 'https://api.themoviedb.org/3/movie/' + e.movieId + '?api_key=ed07fde2a29e865fa73860b991476f93'
     }).map((e) => {
         return axios.get(e);
     });
@@ -63,7 +63,8 @@ app.get('/movies', authCheck, (req, res) => {
         let newArr = responseArr.map((e) => {
             return {
                 title: e.data.original_title,
-                poster: e.data.poster_path
+                poster: e.data.poster_path,
+                id: e.data.id
             }
         });
 
@@ -94,6 +95,11 @@ app.post('/movies', (req, res) => {
             movies: data.data.results,
             userMovies: []
         });
+    }).catch((err) => {
+        console.log(err);
+        res.render('/movies', {
+            error: "No movies matched your search"
+        })
     });
 
 });
@@ -112,7 +118,9 @@ app.post('/movies/add', (req, res) => {
 
     let update = {
         $push: {
-            movies: id
+            movies: {
+                movieId: id
+            }
         }
     }
 
@@ -128,6 +136,32 @@ app.post('/movies/add', (req, res) => {
         }
     });
 
+});
+
+app.post('/movies/delete', authCheck, (req, res) => {
+    let id = req.body.id;
+    let user = req.user;
+    
+    let update = {
+        $pull: {
+            movies: {
+                movieId: id
+            }
+        }
+    }
+
+    User.findByIdAndUpdate(user.id, update, function(err, result) {
+        if(err) {
+            console.log(err);
+            res.render('/movies', {
+                error: "Couldn't delete that movie"
+            })
+        } else {
+            console.log(result);
+            res.redirect('/movies');
+        }
+    });
+    
 });
 
 app.listen(PORT, () => {
