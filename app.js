@@ -24,6 +24,7 @@ const authCheck = (req, res, next) => {
     }
 }
 
+app.use(express.static(__dirname + '/assets'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
