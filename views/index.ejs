@@ -3,20 +3,12 @@
 <%- include('head'); %>
 <body class="home">
     
+    <%- include('navbar', {
+        home: true
+    }); %>
+
     <div class="container">
-
-        <div class="top">
-            <p>Favlists</p>
-            <% if (user) { %>
-                <div class="nav">
-                    <a href="/profile">Profile</a>
-                    <a href="/movies">Movies</a>
-                </div>
-            <% } %>
-        </div>
-
         <div class="content">
-
             <div class="tagline">
                 <p>The one stop solution for keeping track of your favorite stuff</p>
                 <p class="sub">Includes movies, TV shows, books, and more!</p>
@@ -30,13 +22,19 @@
 
             <% if (user) { %>
                 <div class="signedin">
-                    <p>Welcome, <%= user.username%></p>
+                    <p>Welcome, <%= user.username %></p>
                 </div>
             <% } else { %>
                 <div class="signup">
                     <p>To get started, sign up/sign in with Google!</p>
-                    <a href="/auth/google">
+                    <!-- <a href="/auth/google">
                         <img src="google.png">
+                    </a> -->
+                    <a href="/auth/google">
+                        <div>
+                            <img src="googlebox.png" class="googlebox">
+                            <p>Sign in with Google</p>
+                        </div>
                     </a>
                 </div>
             <% } %>
@@ -52,5 +50,6 @@
         </div>
     </a>
 
+    <%- include('jquery'); %>
 </body>
 </html>

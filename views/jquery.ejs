@@ -10,6 +10,18 @@
 
         });
 
+        $('.navbar i.fa-bars').on('click', function() {
+            $('.extended-navbar').css('display', 'flex');
+            $(this).hide();
+            $('.navbar i.fa-times').show();
+        });
+
+        $('.navbar i.fa-times').on('click', function() {
+            $('.extended-navbar').hide();
+            $(this).hide();
+            $('.navbar i.fa-bars').show();
+        });
+
     });
 
 </script>

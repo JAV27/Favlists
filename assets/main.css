@@ -17,7 +17,6 @@ body.home {
 }
 
 .container {
-    height: 100vh;
     min-height: 900px;
     padding: 0 10%;
 }
@@ -94,23 +93,12 @@ div.signup {
     padding: 50px;
     background-color: white;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    text-align: center;
 }
 
 div.signup p {
     font-size: 30px;
     font-family: 'Raleway';
     font-weight: 800;
-}
-
-div.signup a {
-    text-align: center;
-}
-
-div.signup a img {
-    width: 90%;
-    text-align: center;
-    margin-top: 50px;
 }
 
 div.readmore img {
@@ -137,3 +125,176 @@ div.readmore img {
 .signedin {
     width: 30%;
 }
+
+.signup img.googlebox {
+    height: 50px;
+    width: 50px;
+}
+
+.signup a div {
+    background-color: #4285F4;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    width: 210px;
+    margin: auto;
+}
+
+.signup a p {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.signup a {
+    text-decoration: none;
+}
+
+/**RESPONSIVE NAVBAR**/
+
+.navbar {
+    background-color: var(--primary-red);
+    padding: 25px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Raleway';
+    font-size: 20px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.navbar a.home {
+    font-size: 50px;
+    font-family: 'Raleway';
+    font-weight: 800;
+    font-style: italic;
+}
+
+.navbar .right a {
+    margin-left: 50px;
+}
+
+.navbar i {
+    display: none;
+}
+
+.extended-navbar {
+    display: none;
+    border-bottom: 4px solid var(--primary-red);
+    flex-direction: column;
+    font-size: 20px;
+    text-align: center;
+}
+
+.extended-navbar a {
+    color: var(--primary-red);
+    text-decoration: none;
+    padding: 10px;
+}
+
+.extended-navbar a:hover {
+    background-color: var(--primary-red);
+    color: white;
+}
+
+.navbar .fa-times {
+    display: none;
+}
+
+.navbar.home {
+    background-color: white;
+}
+
+.navbar.home a {
+    color: var(--primary-red);
+}
+
+.navbar.home i {
+    color: var(--primary-red);
+}
+
+.extended-navbar.home {
+    background-color: white;
+}
+
+.extended-navbar a {
+    font-family: 'Raleway';
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .container .content {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .container .content .tagline {
+        width: 100%;
+    }
+
+    .content .signup {
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 50px;
+    }
+
+    .container {
+        padding-bottom: 50px;
+    }
+
+    div.signedin {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    div.signup p {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    div.signup a div {
+        margin-top: 50px;
+        width: 60px;
+    }
+
+    div.signup a div img {
+        margin: auto;
+    }
+
+    div.signup a p {
+        display: none;
+    }
+
+    div.signup {
+        padding: 50px 25px;
+    }
+
+    .navbar a.home {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar i {
+        display: flex;
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+    }
+
+    .navbar .right {
+        display: none;
+    }
+}
+
