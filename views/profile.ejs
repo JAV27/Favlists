@@ -4,13 +4,26 @@
 <body>
     
     <%- include('navbar', {
-        home: false
+        home: false,
+        user: user
     }); %>
 
-    <h1>profile!</h1>
-    <h3><%= user.username %></h3>
-    <a href="/auth/logout">Logout</a>
-    <a href="/">Home</a>
+
+    <div class="profile">
+        <div class="left">
+            <img class="profile-image" src="<%= user.image %>" referrerpolicy="no-referrer">
+            <p class="name"><%= user.username %></p>
+            <a href="/auth/logout">Logout</a>
+        </div>
+        <div class="right">
+            <div class="movies">
+                <p>My Movies</p>
+                <div class="list">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     <%- include('jquery');%>
 </body>
 </html>

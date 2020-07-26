@@ -230,6 +230,56 @@ div.readmore img {
     font-family: 'Raleway';
 }
 
+.profile {
+    display: flex;
+    padding: 5% 20%;
+}
+
+.profile .left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile .left .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.profile .left p.name {
+    font-size: 24px;
+    font-family: 'Raleway';
+}
+
+.profile .left a {
+    background-color: var(--light-red);
+    width: 50%;
+    min-width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-family: 'Raleway';
+    border-radius: 10px;
+}
+
+.profile .left a:hover {
+    background-color: var(--primary-red);
+}
+
+.profile .right {
+    margin-left: 20%;
+}
+
+.profile .right .movies p {
+    font-size: 24px;
+    margin: 0;
+    font-family: 'Raleway';
+    text-decoration: underline;
+}
+
 @media only screen and (max-width: 1000px) {
 
     .container .content {

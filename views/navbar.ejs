@@ -1,13 +1,19 @@
 <div class="navbar <%= home === true ? 'home' : '' %>">
     <a href="/" class="home">Favlists</a>
-    <div class="right">
+    <% if(user) { %> 
+        <div class="right">
+            <a href="/profile">Profile</a>
+            <a href="/movies">Movies</a>
+        </div>
+        <i class="fa fa-bars"></i>
+        <i class="fa fa-times"></i>
+    <% } %>
+</div>
+
+<% if(user) { %>
+    <div class="extended-navbar <%= home === true ? 'home' : '' %>">
         <a href="/profile">Profile</a>
         <a href="/movies">Movies</a>
     </div>
-    <i class="fa fa-bars"></i>
-    <i class="fa fa-times"></i>
-</div>
-<div class="extended-navbar <%= home === true ? 'home' : '' %>">
-    <a href="/profile">Profile</a>
-    <a href="/movies">Movies</a>
-</div>
+<% } %>
+

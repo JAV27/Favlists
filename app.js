@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 
 const authCheck = (req, res, next) => {
     if(!req.user) {
-        res.redirect('/auth/login');
+        res.redirect('/');
     } else {
         next();
     }

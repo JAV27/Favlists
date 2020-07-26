@@ -25,6 +25,7 @@ passport.use(
         proxy: true
     }, (accessToken, refreshToken, profile, done) => {
         console.log("HERE");
+        console.log(profile.photos[0].value);
         User.findOne({googleID: profile.id}).then((currentUser) => {
             if(currentUser) {
                 console.log("User is: " + currentUser);
@@ -32,7 +33,8 @@ passport.use(
             } else {
                 new User({
                     username: profile.displayName,
-                    googleID: profile.id
+                    googleID: profile.id,
+                    image: profile.photos[0].value
                 }).save().then((newUser) => {
                     console.log("New User: " + newUser);
                     done(null, newUser);
