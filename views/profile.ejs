@@ -19,7 +19,14 @@
             <div class="movies">
                 <p>My Movies</p>
                 <div class="list">
-                    
+                    <% movies.forEach(movie => { %>
+                        <div class="item">
+                            <img src="http://image.tmdb.org/t/p/w92/<%= movie.poster %>">
+                        </div>
+                    <% }); %>
+                </div>
+                <div class="more">
+                    <a href="/movies"><p>See full list ></p></a>
                 </div>
             </div>
         </div>

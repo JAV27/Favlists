@@ -232,7 +232,7 @@ div.readmore img {
 
 .profile {
     display: flex;
-    padding: 5% 20%;
+    padding: 5% 5% 0 20%;
 }
 
 .profile .left {
@@ -271,6 +271,7 @@ div.readmore img {
 
 .profile .right {
     margin-left: 20%;
+    width: 100%;
 }
 
 .profile .right .movies p {
@@ -279,6 +280,32 @@ div.readmore img {
     font-family: 'Raleway';
     text-decoration: underline;
 }
+
+.profile .movies .list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.profile .movies .list .item {
+    margin-right: 25px;
+}
+
+.profile .movies .more p, .profile .movies .more a {
+    text-decoration: none;
+    color: var(--primary-red);
+    margin-top: 25px;
+}
+
+.profile .movies .more p:hover {
+    text-decoration: underline;
+}
+
+/* 
+.profile .movies .list .item:last-of-type {
+    margin-right: 0;
+} */
 
 @media only screen and (max-width: 1000px) {
 
