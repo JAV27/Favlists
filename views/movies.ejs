@@ -1,45 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
 <%- include('head'); %>
+<body>
+    
+    <%- include('navbar', {
+        home: false,
+        user: user
+    }); %>
 
-<%= typeof error == 'undefined' ?  '' : error %>
+    <%= typeof error == 'undefined' ?  '' : error %>
 
-<h1>Movies!</h1>
-<h3>My Movies</h3>
-<a href="/">Back Home</a>
-<div class="movies">
-    <ul>
-        <% userMovies.forEach(movie => { %>
-            <li>
-                <img src="http://image.tmdb.org/t/p/w92/<%= movie.poster %>">
-                <p><%= movie.title %></p>
-                <form action="/movies/delete" method="POST">
-                    <input type="hidden"  name="id" value="<%= movie.id %>">
-                    <button>Delete</button>
-                </form>
-            </li>
-        <% }); %>
-    </ul>
-</div>
+    <div class="movies">
+        <div class="search">
+            <form action="/movies" method="POST">
+                <input name="search" type="search" placeholder="Search for a movie!">
+                <button>Search</button>
+            </form>
+        </div>
 
-<%= user.username %>
+        <% if(typeof search == 'undefined') { %> 
+            <p class="head">My Movies</p>
+        <% } else { %>
+            <p class="head">Results</p>
+        <% } %> 
 
-<br>
+        <div class="myMovies">
 
-<form action="/movies" method="POST">
-    <input name="search" type="search" placeholder="Search for a movie!">
-    <button>Search</button>
-</form>
+            <% userMovies.forEach(movie => { %>
+                <div class="movie">
+                    <img src="http://image.tmdb.org/t/p/w92/<%= movie.poster %>">
+                    <p><%= movie.title %></p>
+                    <form action="/movies/delete" method="POST">
+                        <input type="hidden"  name="id" value="<%= movie.id %>">
+                        <button>Delete</button>
+                    </form>
+                </div>
+            <% }); %>
+            
+        </div>
 
-<div class="results">
-    <ul>
-        <% movies.forEach(movie => { %>
-            <li id="<%= movie.id %>"><%= movie.original_title %></li>
-        <% }); %>
-    </ul>
-</div>
+        <div class="results">
+            
+            <% movies.forEach(movie => { %>
+                <div class="result" id="<%= movie.id %>">
+                    <img src="http://image.tmdb.org/t/p/w92/<%= movie.poster_path %>">
+                    <p><%= movie.original_title %></p>
+                </div>
+            <% }); %>
+           
+        </div>
 
-<form action="/movies/add" method="POST">
-    <input name="id" type="hidden" value="1">
-    <button>Add Movie</button>
-</form>
+        <% if (typeof search != 'undefined') { %>
+            <form action="/movies/add" method="POST">
+                <input name="id" type="hidden" value="1">
+                <button>Add Movie</button>
+            </form>
+        <% } %>
 
-<%- include ('jquery'); %>
+    </div>
+
+    <%- include ('jquery'); %>
+
+</body>
+</html>
+
+

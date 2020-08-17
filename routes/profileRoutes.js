@@ -11,7 +11,7 @@ const authCheck = (req, res, next) => {
 
 router.get('/', authCheck, (req, res) => {
 
-    let amount = (req.user.movies.length > 5) ? 5 : req.user.movies.length;
+    let amount = (req.user.movies.length > 4) ? 4 : req.user.movies.length;
 
     let userMovies = [];
     for(let i=0;i<amount;i++) {

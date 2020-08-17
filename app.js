@@ -74,6 +74,7 @@ app.get('/movies', authCheck, (req, res) => {
             movies: [],
             userMovies: newArr
         });
+        
     }).catch((err) => {
         console.log(err);
         res.render('movies', {
@@ -90,17 +91,25 @@ app.get('/movies', authCheck, (req, res) => {
 app.post('/movies', (req, res) => {
 
     let search = encodeURI(req.body.search);
-    axios.get('https://api.themoviedb.org/3/search/movie?api_key=ed07fde2a29e865fa73860b991476f93&query=' + search + '&page=1').then((data) => {
+
+    axios.get('https://api.themoviedb.org/3/search/movie?api_key=ed07fde2a29e865fa73860b991476f93&query=' + search + '&page=1&language=en-US').then((data) => {
+        let movies = [];
+        for(let i=0;i<10;i++) {
+            console.log(data.data.results[i]);
+            if(typeof data.data.results[i] == 'undefined') {
+                break;
+            }
+            movies[i] = data.data.results[i];
+        }
         res.render('movies', {
             user: req.user,
-            movies: data.data.results,
-            userMovies: []
+            movies: movies,
+            userMovies: [],
+            search: true
         });
     }).catch((err) => {
         console.log(err);
-        res.render('/movies', {
-            error: "No movies matched your search"
-        })
+        res.redirect('/movies');
     });
 
 });
@@ -112,9 +121,22 @@ app.post('/movies/add', (req, res) => {
     let id = req.body.id;
 
     if(id == 1) {
-        return res.render('/movies', {
+        return res.render('movies', {
             error: "Must select a movie"
         });
+    } 
+
+    let exists = false;
+
+    req.user.movies.forEach(movie => {
+        if(movie.movieId == id) {
+            exists = true;
+        }
+    });
+
+    if(exists) {
+        res.redirect('/movies');
+        return;
     }
 
     let update = {
@@ -128,7 +150,8 @@ app.post('/movies/add', (req, res) => {
     User.findByIdAndUpdate(req.user.id, update, function(err, result) {
         if(err) {
             console.log(err);
-            res.render('/movies', {
+            res.render('movies', {
+                user: req.user,
                 error: "There was an error"
             });
         } else {
@@ -154,7 +177,7 @@ app.post('/movies/delete', authCheck, (req, res) => {
     User.findByIdAndUpdate(user.id, update, function(err, result) {
         if(err) {
             console.log(err);
-            res.render('/movies', {
+            res.render('movies', {
                 error: "Couldn't delete that movie"
             })
         } else {

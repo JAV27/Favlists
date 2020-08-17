@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function() {
         
-        $('.results li').on('click', function() {
+        $('.results .result').on('click', function() {
             console.log($(this).text());
             $('.selected').removeClass('selected');
             $(this).addClass('selected');
@@ -21,6 +21,7 @@
             $(this).hide();
             $('.navbar i.fa-bars').show();
         });
+
 
     });
 

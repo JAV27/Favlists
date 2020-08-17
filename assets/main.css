@@ -140,6 +140,10 @@ div.readmore img {
     margin: auto;
 }
 
+.signup a div:hover {
+    background-color:#3264b8;
+}
+
 .signup a p {
     margin: 0;
     color: white;
@@ -302,11 +306,76 @@ div.readmore img {
     text-decoration: underline;
 }
 
-/* 
-.profile .movies .list .item:last-of-type {
-    margin-right: 0;
-} */
+/* Movies Page */
 
+.movies {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 5% 100px 20%;
+}
+
+.movies p.head {
+    font-size: 24px;
+    font-family: 'Raleway';
+}
+
+.movies .myMovies, .results {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movies .myMovies .movie, .results .result {
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.results .result {
+    cursor: pointer;
+}
+
+.results .result:hover {
+    border: 2px solid green;
+}
+
+.movies .myMovies .movie p, .results .result p {
+    margin: 10px;
+    max-width: 150px;
+    text-align: left;
+}
+
+.movies .search {
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.movies .search input {
+    height: 30px;
+    flex-grow: 1;
+}
+
+.movies .search button {
+    height: 30px;
+}
+
+.movies .search form {
+    width: 100%;
+    display: flex;
+}
+
+.selected {
+    border: 2px solid green;
+    padding: 10px;
+}
+
+/*  */
 @media only screen and (max-width: 1000px) {
 
     .container .content {
